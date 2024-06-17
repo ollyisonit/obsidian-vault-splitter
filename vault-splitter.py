@@ -133,3 +133,5 @@ if list_mode:
     names.sort(key=lambda x: x.lower())
     for name in names:
         print(name)
+    if len(names) == 0:
+        print("No notes match the given criteria.")
