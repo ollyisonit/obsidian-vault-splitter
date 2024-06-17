@@ -8,7 +8,6 @@ import re
 import shutil
 
 parser: ArgumentParser = ArgumentParser(
-    prog="Obsidian Vault Splitter",
     description=
     "Vault-splitting utility for Obsidian. Allows you to select a root note and then recursively list, move, or copy all notes that it links to. Does not follow backlinks."
 )

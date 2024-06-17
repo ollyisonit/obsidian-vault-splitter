@@ -7,7 +7,7 @@ Requires Python 3.10 or later.
 **CAUTION**: Make sure to back up your vault before splitting it.
 
 ```
-usage: Obsidian Vault Splitter [-h] [-cp PATH] [-mv PATH] [-ls] [--find-orphans] root-note
+usage: vault-splitter.py [-h] [-cp PATH] [-mv PATH] [-ls] [--find-orphans] root-note
 
 Vault-splitting utility for Obsidian. Allows you to select a root note and then recursively list, move, or copy all notes that it links to. Does not follow backlinks.
 
