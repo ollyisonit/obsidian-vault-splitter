@@ -125,8 +125,6 @@ else:
     active_notes = unprocessed_notes
 
 if list_mode:
-    # for name, path in active_notes.items():
-    #     print(f"{name}: {path.relative_to(vault_dir)}")
     names = [
         x.relative_to(vault_dir).as_posix() for x in active_notes.values()
     ]
