@@ -5,6 +5,7 @@ from pathlib import Path
 import os
 from typing import Dict, Optional, TypeVar
 import re
+import shutil
 
 parser: ArgumentParser = ArgumentParser(
     prog="Obsidian Vault Splitter",
@@ -16,10 +17,10 @@ parser.add_argument(
     "root-note",
     help="Path to file that should be considered as root when building tree")
 
-parser.add_argument('-c',
+parser.add_argument('-cp',
                     '--copy',
                     help="Copy isolated tree to given directory")
-parser.add_argument('-m',
+parser.add_argument('-mv',
                     '--move',
                     help="Move isolated tree to given directory")
 parser.add_argument('-ls',
@@ -133,3 +134,18 @@ if list_mode:
         print(name)
     if len(names) == 0:
         print("No notes match the given criteria.")
+elif copy_dir or move_dir:
+    target_path = Path()
+    if copy_dir:
+        target_path = copy_dir
+    elif move_dir:
+        target_path = move_dir
+
+    for file in active_notes.values():
+        print(f"{file} -> {target_path}")
+        new_path = target_path.joinpath(file.relative_to(vault_dir))
+        os.makedirs(new_path.parent, exist_ok=True)
+        if copy_dir:
+            shutil.copy2(file, new_path)
+        elif move_dir:
+            shutil.move(file, new_path)
