@@ -10,7 +10,7 @@ import shutil
 parser: ArgumentParser = ArgumentParser(
     prog="Obsidian Vault Splitter",
     description=
-    "Vault-splitting utility for Obsidian. Allows you to select a root note and then construct a new vault from all the notes connected to it. Only affects *.md files--any other types of file in the vault will not be tracked."
+    "Vault-splitting utility for Obsidian. Allows you to select a root note and then recursively list, move, or copy all notes that it links to. Does not follow backlinks."
 )
 
 parser.add_argument(
@@ -19,17 +19,21 @@ parser.add_argument(
 
 parser.add_argument('-cp',
                     '--copy',
+                    metavar='PATH',
                     help="Copy isolated tree to given directory")
 parser.add_argument('-mv',
                     '--move',
+                    metavar='PATH',
                     help="Move isolated tree to given directory")
-parser.add_argument('-ls',
-                    '--list',
-                    action='store_true',
-                    help="List files without moving or copying them")
-parser.add_argument('--find-orphans',
-                    action='store_true',
-                    help="Return all files that aren't in the tree")
+parser.add_argument(
+    '-ls',
+    '--list',
+    action='store_true',
+    help="List files without moving or copying them. Default behavior.")
+parser.add_argument(
+    '--find-orphans',
+    action='store_true',
+    help="Invert behavior to affect all files that aren't in the tree")
 
 
 def resolve_path(path: Optional[Path]) -> Optional[Path]:
