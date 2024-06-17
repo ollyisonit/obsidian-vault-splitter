@@ -2,6 +2,8 @@
 
 A small command line utility for splitting up your Obsidian vaults. Allows you to select one note as the root, and then recursively grabs all of the notes it references.
 
+Requires Python 3.10 or later.
+
 **CAUTION**: Make sure to back up your vault before splitting it.
 
 ```
