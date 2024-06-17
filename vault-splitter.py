@@ -114,8 +114,9 @@ def add_to_tree(note_name: str):
 
         if path.suffix == ".md":
             with open(path, "r") as note_file:
-                matches = re.findall(r"[^\\]?\[\[(.*?[^\\]?)\]\]",
-                                     note_file.read())
+                matches = re.findall(
+                    r"(?<!\\)\[(?<!\\)\[(.*?)(?:(?<!\\)\|.*?)?(?<!\\)\](?<!\\)\]",
+                    note_file.read())
                 for match in matches:
                     add_to_tree(match)
 
