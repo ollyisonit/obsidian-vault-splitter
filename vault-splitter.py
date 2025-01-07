@@ -99,12 +99,11 @@ for note in vault_dir.glob("**/*"):
                 note.as_uri()) or re.match(
                     f"^{vault_dir.joinpath('.trash').as_uri()}.*",
                     note.as_uri()):
-        print(note)
         continue
-    # if note.suffix == ".md":
-    #     unprocessed_notes[note.stem] = note
-    # else:
-    #     unprocessed_notes[note.name] = note
+    if note.suffix == ".md":
+        unprocessed_notes[note.stem] = note
+    else:
+        unprocessed_notes[note.name] = note
 
 
 def add_to_tree(note_name: str):
